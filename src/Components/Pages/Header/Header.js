@@ -22,7 +22,7 @@ const Header = () => {
                     <label tabIndex={0} className="btn btn-ghost">
                         <Link to='/'><img src='' alt="" /></Link>
                     </label>
-                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-green-400 text-white rounded-box w-52">
                         {menu}
                     </ul>
                     </div>
