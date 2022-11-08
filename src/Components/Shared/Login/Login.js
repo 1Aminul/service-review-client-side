@@ -1,19 +1,29 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
 import { Link, useNavigate, useLocation} from 'react-router-dom';
+import { FaGoogle } from "react-icons/fa";
+import Title from '../../useTitle';
 
 
 const Login = () => {
-    const {handleLogin} = useContext(AuthContext)
+    const {handleLogin, googleSignIn} = useContext(AuthContext)
     let navigate =  useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || '/'
+
+    Title('Login')
 
     const handlerSubmit = (e)=>{
         e.preventDefault()
         const form = e.target
         const email = form.email.value;
         const password = form.password.value;
+
+        googleSignIn()
+        .then(result=>{
+            const user = result.user
+            console.log(user);
+        }).catch(err=> console.log(err))
         
         handleLogin(email, password)
         .then(res=>{
@@ -50,7 +60,8 @@ const Login = () => {
                         <img src='' alt=""/>
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm  shadow-2xl bg-base-100">
-                    <form onSubmit={handlerSubmit} className="card-body">
+                <div  className="card-body">
+                    <form onSubmit={handlerSubmit}>
                         <h1 className='text-6xl text-center font-extrabold'>Login</h1><br />
                         <div className="form-control">
                         <label className="label">
@@ -69,9 +80,13 @@ const Login = () => {
                         <div className="form-control mt-6">
                         <button className="btn btn-primary">Login</button>
                         </div>
+                       
                         <br />
-                        <p className='text-center text-xl'>Don't have an account? <Link className='text-red-600' to= '/signup'>Sign Up</Link></p>
+                        
                     </form>
+                    <div className='btn btn-success text-xl text-white'><button onClick={googleSignIn}><FaGoogle className='text-xl inline mr-2 text-primary'></FaGoogle>Google Sign</button></div>
+                    </div>
+                    <p className='text-center text-xl mb-5'>Don't have an account? <Link className='text-red-600' to= '/signup'>Sign Up</Link></p>
                     </div>
                 </div>
          </div>

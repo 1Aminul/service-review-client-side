@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+// import logo from '../../../images/download.png'
 import { AuthContext } from '../../Context/AuthProvider';
 
 
@@ -34,6 +35,7 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
+                    <h5 className="text-xl">{user?.email}</h5>
                     <Link to='/' className="btn">Get started</Link>
                 </div>
             </div>
