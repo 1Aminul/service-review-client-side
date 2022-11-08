@@ -1,5 +1,6 @@
 import React from 'react';
 import { FaArrowRight} from 'react-icons/fa'
+import { Link } from 'react-router-dom';
 
 const ServiceCard = ({service}) => {
     const {_id, photoURL, name, price, about} = service;
@@ -11,7 +12,7 @@ const ServiceCard = ({service}) => {
                 <p className='text-xl text-justify'>{about.length>100 ? about.slice(0, 100)+'...Read More' : about }</p>
                 <div className="flex justify-between mt-3">
                  <p className='text-2xl text-secondary mr-16'>$ {price}</p>   
-                <button className="btn btn-primary">Details <FaArrowRight className='ml-3'></FaArrowRight></button>
+                <Link to = {`/services/${_id}`}><button  className="btn btn-primary">Details <FaArrowRight className='ml-3'></FaArrowRight></button></Link>
                 </div>
             </div>
             </div>
