@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-// import logo from '../../../images/download.png'
+import logo from '../../../images/teeth.png'
 import { AuthContext } from '../../Context/AuthProvider';
 
 
@@ -17,11 +17,12 @@ const Header = () => {
         }
         </>
     return (
-                <div className="navbar bg-green-400 text-white">
+                <div className="navbar bg-gray-800 text-white">
                 <div className="navbar-start">
                     <div className="dropdown">
                     <label tabIndex={0} className="btn btn-ghost">
-                        <Link to='/'><img src='' alt="" /></Link>
+                        <Link to='/'><img src={logo} className="w-10" alt="this is logo" /></Link>
+                        <h2 className="text-xl">Dentist</h2>
                     </label>
                     <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-green-400 text-white rounded-box w-52">
                         {menu}

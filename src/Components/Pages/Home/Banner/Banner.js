@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 import image1 from '../../../../images/dentist1.jpg'
 
 const Banner = () => {
@@ -9,7 +10,7 @@ const Banner = () => {
           <div className="max-w-md">
             <h1 className="mb-5 text-5xl font-bold">Change smile with Dentist</h1>
             <p className="mb-5">Teeth are an incredibly strong and important part of the human body. Losing a tooth can be a traumatic experience but the good news is that there are many different ways to replace your natural teeth. </p>
-            <button className="btn btn-primary">Get Started</button>
+            <Link to='/services'><button className="btn btn-primary">Show our service</button></Link>
           </div>
         </div>
       </div>
