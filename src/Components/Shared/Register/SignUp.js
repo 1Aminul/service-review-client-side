@@ -1,17 +1,21 @@
 
 import React, { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
+import Title from '../../useTitle'
 
 import { Link } from 'react-router-dom';
 
 const SignUp = () => {
-
-    const {handleRegister} = useContext(AuthContext)
+    Title('sign up')
+    const {handleRegister, handlerUpdateProfile} = useContext(AuthContext)
+    
 
     const handlerSubmit = (e)=>{
         e.preventDefault()
         const form = e.target
         const email = form.email.value;
+        const name = form.name.value
+        const url = form.url.value
         const password = form.password.value;
 
         handleRegister(email, password)
@@ -19,6 +23,12 @@ const SignUp = () => {
             const user = res.user
             console.log(user)
             form.reset()
+            handlerUpdateProfile(name, url)
+            .then(()=>{
+                alert('profile is updated')
+            })
+            .catch(err=> console.log(err))
+
         }).catch(e => console.error(e))
     }
 
@@ -31,12 +41,18 @@ const SignUp = () => {
             </div>
             <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
             <form onSubmit={handlerSubmit} className="card-body">
-                <h1 className='text-6xl text-center font-extrabold'>Sign Up</h1><br />
+                <h1 className='text-4xl text-center font-extrabold'>Sign Up</h1><br />
                 <div className="form-control">
                 <label className="label">
                     <span className="label-text">Name</span>
                 </label>
                 <input type="text" name='name' placeholder="Name" className="input input-bordered" required />
+                </div>
+                <div className="form-control">
+                <label className="label">
+                    <span className="label-text">PhotoURL</span>
+                </label>
+                <input type="text" name='url' placeholder="Name" className="input input-bordered" required />
                 </div>
                 <div className="form-control">
                 <label className="label">

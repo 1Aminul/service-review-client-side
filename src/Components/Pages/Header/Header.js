@@ -6,13 +6,20 @@ import { AuthContext } from '../../Context/AuthProvider';
 
 const Header = () => {
     const {user , logOut} = useContext(AuthContext)
+    const handleLogOut = ()=>{
+        logOut()
+        .then(()=>{
+
+        }).catch(err => console.log(err))
+    }
+
     const menu = <>
         <li className='text-xl font-bold'> <Link to='/'>Home</Link></li>
         <li className='text-xl font-bold'><Link to='/services'>Services</Link></li>
         {
             user?.email? 
            
-            <li><button onClick={logOut} className='btn btn-ghost'><Link to = '/login'>SignOut</Link></button></li>
+            <li><button onClick={handleLogOut} className='btn btn-ghost'><Link to = '/login'>SignOut</Link></button></li>
             : <li><Link to = '/login'>Login</Link></li>
         }
         </>
@@ -36,8 +43,8 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <h5 className="text-xl">{user?.email}</h5>
-                    <Link to='/' className="btn">Get started</Link>
+                    
+                    <Link to='/' className="btn">Take Appointment</Link>
                 </div>
             </div>
 );

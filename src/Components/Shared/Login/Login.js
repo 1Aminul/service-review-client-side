@@ -19,11 +19,7 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
 
-        googleSignIn()
-        .then(result=>{
-            const user = result.user
-            console.log(user);
-        }).catch(err=> console.log(err))
+        
         
         handleLogin(email, password)
         .then(res=>{
@@ -51,6 +47,14 @@ const Login = () => {
         }).catch(e => console.error(e))
     }
 
+      const handleGoogleSignIn = () =>{
+        googleSignIn()
+        .then(result=>{
+            const user = result.user
+            console.log(user);
+        }).catch(err=> console.log(err))
+      }
+
 
     return (
         <div className="hero min-h-screen bg-base-200">
@@ -62,7 +66,7 @@ const Login = () => {
                     <div className="card flex-shrink-0 w-full max-w-sm  shadow-2xl bg-base-100">
                 <div  className="card-body">
                     <form onSubmit={handlerSubmit}>
-                        <h1 className='text-6xl text-center font-extrabold'>Login</h1><br />
+                        <h1 className='text-4xl text-center font-extrabold'>Login</h1><br />
                         <div className="form-control">
                         <label className="label">
                             <span className="label-text">Email</span>
@@ -84,7 +88,7 @@ const Login = () => {
                         <br />
                         
                     </form>
-                    <div className='btn btn-success text-xl text-white'><button onClick={googleSignIn}><FaGoogle className='text-xl inline mr-2 text-primary'></FaGoogle>Google Sign</button></div>
+                    <div className='btn btn-success text-xl text-white'><button onClick={handleGoogleSignIn}><FaGoogle className='text-xl inline mr-2 text-primary'></FaGoogle>Google Sign</button></div>
                     </div>
                     <p className='text-center text-xl mb-5'>Don't have an account? <Link className='text-red-600' to= '/signup'>Sign Up</Link></p>
                     </div>
