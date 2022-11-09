@@ -7,8 +7,22 @@ const Details = () => {
     Title('detail & review')
     const {user} = useContext(AuthContext)
     const {name, photoURL, about} = useLoaderData()
-    const time = new Date()
-    console.log(time);
+
+
+    const now = new Date();
+    const date = now.getDate()
+    console.log(date);
+    const current = now.getHours() + ':' + now.getMinutes();
+    const withPmAm = now.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+      });
+    const nameOfMonthUS = new Intl.DateTimeFormat('en-US', {month: 'short'}).format(
+        new Date(),
+      );
+      
+    let time = `${date} ${nameOfMonthUS} ${withPmAm}`
+   
 
     const handlerReview = (e)=>{
         e.preventDefault()
@@ -18,7 +32,8 @@ const Details = () => {
             name: user?.displayName,
             photoURL: user?.photoURL,
             email: user?.email,
-            review
+            review,
+            time
         }
 
     }
