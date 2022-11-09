@@ -1,18 +1,21 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 import Title from '../../useTitle';
+import CommentBox from './CommentBox';
 
 const Details = () => {
     Title('detail & review')
     const {user} = useContext(AuthContext)
-    const {name, photoURL, about} = useLoaderData()
+    const {_id, name, photoURL, about} = useLoaderData()
 
+    const [reviews, setReviews] = useState([])
+    
+    
 
     const now = new Date();
     const date = now.getDate()
-    console.log(date);
-    const current = now.getHours() + ':' + now.getMinutes();
     const withPmAm = now.toLocaleTimeString('en-US', {
         hour: '2-digit',
         minute: '2-digit',
@@ -26,17 +29,46 @@ const Details = () => {
 
     const handlerReview = (e)=>{
         e.preventDefault()
-        const review = e.target.review.target;
-       
+        const review = e.target.review.value;
+      
         const comment = {
             name: user?.displayName,
             photoURL: user?.photoURL,
             email: user?.email,
+            id: _id,
             review,
             time
         }
-
+        fetch(`https://service-review-server-sand.vercel.app/reviews`, {
+            method: "POST",
+            headers: {
+                'content-type': 'application/json',
+            },
+            body:JSON.stringify(comment)
+        })
+        .then(res=> res.json())
+        .then(data=> {
+            console.log(data);
+            if(data.acknowledged){
+                toast.success('Your Review added successfully')
+            }
+        })  
     }
+
+    useEffect(()=>{
+        fetch(`https://service-review-server-sand.vercel.app/reviews`)
+        .then(res=> res.json())
+        .then(data=> {
+          
+            const comment = data.filter(review=> review.id === _id);
+            setReviews(comment)  
+        })
+    },[_id])
+
+
+
+
+
     return (
         <div className='my-10 grid lg:grid-cols-2  w-3/4 mx-auto gap-10'>
             <div className="card card-compact w-96 bg-gray-800 text-white shadow-2xl">
@@ -61,11 +93,16 @@ const Details = () => {
                                     <button className='btn btn-success text-white'>Add Review</button>
                                 </form>
                             </>:
-                            <p className='text-3xl text-red-600 font-bold'>Please Login and give your review!!!!!!!!!!</p>
+                            <p className='text-3xl text-red-600 font-bold'>Please Login to add a review!!!!!!!!!!</p>
                         }
                </div>
-               <div>
-                 
+               <div className=' p-5 my-5'>
+                 {
+                    reviews.map(comment=> <CommentBox
+                    key={comment._id}
+                    comment = {comment}
+                    ></CommentBox>)
+                 }
                </div>
             </div>
         </div>

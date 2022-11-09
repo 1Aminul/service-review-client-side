@@ -33,6 +33,7 @@ const AuthProvider = ({children}) => {
 
     //google sign in
     const googleSignIn = ()=>{
+        
         return signInWithPopup(auth, gooleProvier)
     }
 
