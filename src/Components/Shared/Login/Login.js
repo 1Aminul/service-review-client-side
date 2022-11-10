@@ -26,22 +26,22 @@ const Login = () => {
             const user = res.user
             console.log(user)
             form.reset()
-            // const currentuser = {
-            //     email: user.email
-            // }
-            // //get token
-            // fetch('http://localhost:5000/jwt', {
-            //     method: "POST",
-            //     headers:{
-            //         'content-type': 'application/json'
-            //     },
-            //     body: JSON.stringify(currentuser)
-            // })
-            // .then(res=> res.json())
-            // .then(data=> {
-            //     console.log(data);
-            //     localStorage.setItem('genius-Token', data.token)
-            // })
+            const currentuser = {
+                email: user.email
+            }
+            //get token
+            fetch(' https://service-review-server-sand.vercel.app/jwt', {
+                method: "POST",
+                headers:{
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(currentuser)
+            })
+            .then(res=> res.json())
+            .then(data=> {
+                console.log(data);
+                localStorage.setItem('genius-Token', data.token)
+            })
 
              navigate(from, { replace: true })
         }).catch(e => console.error(e))

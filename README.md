@@ -10,7 +10,10 @@
 11. click the edit button you go to update route and update your review.\
 12. click the delete button you review deleted.\
 13. go to the add service page you will add the service.\
-14. 
+14. loading spinner added in login and signup and services pages.\
+15. my private server repo link: https://github.com/Porgramming-Hero-web-course/b6a11-service-review-server-side-1Aminul
+16. my server vercel link: https://service-review-server-sand.vercel.app/services
+
 
 
 
