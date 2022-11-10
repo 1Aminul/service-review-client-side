@@ -18,11 +18,12 @@ const Header = () => {
         <li className='text-xl font-bold'><Link to='/services'>Services</Link></li>
         <li className='text-xl font-bold'><Link to='/review'>My Reviews</Link></li>
         <li className='text-xl font-bold'><Link to='/addService'>Add Service</Link></li>
+        <li className='text-xl font-bold'><Link to='/blog'>Blog</Link></li>
       
         {
             user?.email? 
            
-            <li><button onClick={handleLogOut} className='btn btn-ghost'><Link to = '/login'>SignOut</Link></button></li>
+            <li><button onClick={handleLogOut} className='btn btn-ghost text-xl font-bold'><Link to = '/login'>SignOut</Link></button></li>
             : <li><Link to = '/login'>Login</Link></li>
         }
         </>

@@ -1,42 +1,42 @@
 import React, {useState} from 'react';
+import toast from 'react-hot-toast'
 import { useLoaderData } from 'react-router-dom';
 import Title from '../../useTitle';
 
 const UpdateForm = () => {
     Title('update review')
     const datas = useLoaderData()
-    console.log(datas._id);
 
-   const [review, setReview] = useState({}) 
+
+   const [review, setReview] = useState(datas) 
     
-   const updateReview = ()=>{
+   const updateReview = (e)=>{
+    e.preventDefault()
    
-    // fetch(`https://service-review-server-sand.vercel.app/reviews/${id}`, {
-    //     method: 'PATCH',
-    //     headers: {
-    //         'content-type': 'application/json',
-    //     },
-    //     body: JSON.stringify(comment)
-    // })
-    // .then(res=> res.json())
-    // .then(data => {
-    //     console.log(data)
-    //     if(data.modifiedCount > 0){
-    //       const d = datas.review
-    //       console.log(d);
-    //     }
+    fetch(`https://service-review-server-sand.vercel.app/reviews/${datas._id}`, {
+        method: 'PUT',
+        headers: {
+            'content-type': 'application/json',
+        },
+        body: JSON.stringify(review)
+    })
+    .then(res=> res.json())
+    .then(data => {
+        console.log(data)
+        if(data.mmatchedCount > 0){
+            toast.success('Your Review is update')
+        }
 
-    // })
-    // .catch(error => console.log(error))
+    })
+    .catch(error => console.log(error))
 }
 
-    const handleChange = (e)=>{
-        e.preventDefault()
-        const comment = e.target.review.value;
-        // console.log(comment);
-        const newComment = {...review, comment}
-        console.log(newComment);
-        setReview(newComment)
+    const handleChange = (event)=>{
+       const field = event.target.name;
+       const value = event.target.value;
+       const newUser = {...review}
+       newUser[field] = value;
+       setReview(newUser)   
     }
 
 

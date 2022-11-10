@@ -1,6 +1,16 @@
 1. I create my project on Dentist doctor.\
-2. i create my server api and link to database in mongodb.\
-3.
+2. I create my server api and link to database in mongodb.\
+3. I creat home route, in home route i also create a banner, two different section and 3 limit data with details button.\
+4. I create a see all button under the service data.\
+5. after clicking the see all button you will go in the all service route.\
+6. I also create private route.\
+7. In the details page two section.\
+8. Add the review and reload page you show your review.\
+10. My Review page is setting row and edit and delete button added.\
+11. click the edit button you go to update route and update your review.\
+12. click the delete button you review deleted.\
+13. go to the add service page you will add the service.\
+14. 
 
 
 
