@@ -62,6 +62,7 @@ const Details = () => {
         .then(data=> {
           
             const comment = data.filter(review=> review.id === _id);
+            
             setReviews(comment)  
         })
     },[_id])

@@ -4,6 +4,7 @@ import { AuthContext } from '../../Context/AuthProvider';
 import Title from '../../useTitle'
 
 import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
 
 const SignUp = () => {
     Title('sign up')
@@ -25,7 +26,7 @@ const SignUp = () => {
             form.reset()
             handlerUpdateProfile(name, url)
             .then(()=>{
-                alert('profile is updated')
+                toast.success('use sign up and profile is updated')
             })
             .catch(err=> console.log(err))
 

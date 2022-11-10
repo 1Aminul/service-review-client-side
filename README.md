@@ -1,3 +1,11 @@
+1. I create my project on Dentist doctor.\
+2. i create my server api and link to database in mongodb.\
+3.
+
+
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
