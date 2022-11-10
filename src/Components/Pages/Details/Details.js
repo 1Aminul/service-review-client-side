@@ -32,10 +32,11 @@ const Details = () => {
         const review = e.target.review.value;
       
         const comment = {
+            id: _id,
             name: user?.displayName,
+            serviceName: name,
             photoURL: user?.photoURL,
             email: user?.email,
-            id: _id,
             review,
             time
         }
@@ -93,7 +94,10 @@ const Details = () => {
                                     <button className='btn btn-success text-white'>Add Review</button>
                                 </form>
                             </>:
+                           <>
                             <p className='text-3xl text-red-600 font-bold'>Please Login to add a review!!!!!!!!!!</p>
+                            <Link to='/login'><button className='btn btn-warning'>Login</button></Link>
+                           </>
                         }
                </div>
                <div className=' p-5 my-5'>

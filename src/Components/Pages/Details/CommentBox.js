@@ -10,12 +10,12 @@ const CommentBox = ({comment}) => {
                         <img src={photoURL} alt=''/>
                     </div>  
                 </div>
-                <div className='ml-5'>
+                <div className='ml-5 text-primary'>
                     <p className='text-xl mr-12'>{name}</p>
                     <p className='text-sm'>{time}</p>
                 </div> 
             </div>
-            <p className='mt-5 text-xl'>{review}</p>
+            <p className='mt-5 text-xl text-green-800 font-bold'>{review}</p>
         </div>
     );
 };
