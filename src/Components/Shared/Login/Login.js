@@ -3,9 +3,11 @@ import { AuthContext } from '../../Context/AuthProvider';
 import { Link, useNavigate, useLocation} from 'react-router-dom';
 import { FaGoogle } from "react-icons/fa";
 import Title from '../../useTitle';
+import { useState } from 'react';
 
 
 const Login = () => {
+    const [error, setError] = useState('')
     const {handleLogin, googleSignIn} = useContext(AuthContext)
     let navigate =  useNavigate()
     const location = useLocation()
@@ -28,7 +30,7 @@ const Login = () => {
             form.reset()
            
              navigate(from, { replace: true })
-        }).catch(e => console.error(e))
+        }).catch(e => setError(e.message))
     }
 
       const handleGoogleSignIn = () =>{
@@ -68,6 +70,7 @@ const Login = () => {
                         <div className="form-control mt-6">
                         <button className="btn btn-primary">Login</button>
                         </div>
+                        <p className='text-error'>{error}</p>
                        
                         <br />
                         

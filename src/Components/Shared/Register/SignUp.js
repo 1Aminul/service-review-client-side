@@ -1,5 +1,5 @@
 
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
 import Title from '../../useTitle'
 
@@ -8,6 +8,7 @@ import toast from 'react-hot-toast';
 
 const SignUp = () => {
     Title('sign up')
+    const [error, setError] = useState('')
     const {handleRegister, handlerUpdateProfile} = useContext(AuthContext)
     
 
@@ -30,7 +31,7 @@ const SignUp = () => {
             })
             .catch(err=> console.log(err))
 
-        }).catch(e => console.error(e))
+        }).catch(e => setError(e.message))
     }
 
     return (
@@ -73,7 +74,8 @@ const SignUp = () => {
                 <div className="form-control mt-6">
                 <button className="btn btn-primary">Sign Up</button>
                 </div>
-                <p className='text-center text-xl'>Already have an account? <Link to= '/login'>Login</Link></p>
+                <p className='text-error'>{error}</p>
+                <p className='text-center text-xl'>Already have an account? <Link className='text-primary' to= '/login'>Login</Link></p>
             </form>
             </div>
         </div>
